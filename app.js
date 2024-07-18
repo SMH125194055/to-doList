@@ -3,12 +3,21 @@
 
 const express = require("express");
 const bodyParser = require("body-parser");
+const path = require('path');
 const date = require(__dirname + '/data.js');
 
 
 
 
+
 const app = express();
+
+app.set("view engine", "ejs");
+// Set the views directory
+app.set('views', path.join(__dirname, 'views'));
+
+
+
 var item = "";
 const items = ["Buy Food", "Cook Food", "Eat Food"];
 const workItems = [];
@@ -19,7 +28,9 @@ app.use(express.static(__dirname + "/public"));
 
 
 
-app.set("view engine", "ejs");
+
+
+
 
 app.get("/", function (req, res) {
     const day =date.getDay();
@@ -64,5 +75,5 @@ app.get("/about", function (req, res) {
 
 app.listen(process.env.PORT || 3000, function (req, res) {
 
-    console.log("server is running on port 4000");
+    console.log("server is running on port 3000");
 });
